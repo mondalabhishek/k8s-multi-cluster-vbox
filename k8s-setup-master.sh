@@ -17,6 +17,7 @@ cat >> /etc/hosts <<EOF
 192.168.56.2 master
 192.168.56.4 worker-1
 192.168.56.6 worker-2
+192.168.56.8 worker-3
 EOF
 
 apt-get install ca-certificates curl gnupg lsb-release
