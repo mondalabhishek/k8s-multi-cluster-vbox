@@ -19,11 +19,13 @@ cat >> /etc/hosts <<EOF
 192.168.56.6 worker-2
 EOF
 
-apt-get update 
-apt-get install containerd -y
+apt-get install ca-certificates curl gnupg lsb-release
+mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu   $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-mkdir -p /etc/containerd
-containerd config default  /etc/containerd/config.toml
+apt-get update 
+apt-get install containerd.io -y
 
 #install kubectl
 apt-get update &&  apt-get install -y apt-transport-https gnupg2 curl
@@ -53,3 +55,8 @@ sudo modprobe br_netfilter
 #sudo swapoff -a
 
 service systemd-resolved restart
+
+rm /etc/containerd/config.toml
+sudo modprobe br_netfilter
+sudo echo '1' > /proc/sys/net/ipv4/ip_forward
+sudo systemctl restart containerd
