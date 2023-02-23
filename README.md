@@ -44,11 +44,11 @@ vagrant ssh [worker1|worker2]
 	- note the join cmd output.
 	- logout as root
 	- create kube config file:
-		-- mkdir -p $HOME/.kube
- 		-- sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-		-- sudo chown $(id -u):$(id -g) $HOME/.kube/config
+		- mkdir -p $HOME/.kube
+ 		- sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+		- sudo chown $(id -u):$(id -g) $HOME/.kube/config
 	- Install network plugin:
-		kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+		- kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 	- Wait for Scheduele, ContollerManager, etcd to be ready - kubectl get cs
 	- Wait for master node to be ready: kubectl get nodes
 	
