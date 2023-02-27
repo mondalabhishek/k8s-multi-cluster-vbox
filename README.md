@@ -1,4 +1,4 @@
-PS: Don't hesitate  give a star ⭐ :heart: :star: 
+#Updated the setup instruction as it worked in Linux Mint.
 
 # k8s-cluster
 
